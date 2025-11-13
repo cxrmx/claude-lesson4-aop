@@ -46,6 +46,10 @@ public class Task {
         return assignedUserId;
     }
 
+    public void setAssignedUserId(Long userId) {
+        this.assignedUserId = userId;
+    }
+
     public LocalDateTime getCreatedAt() {
         return createdAt;
     }
