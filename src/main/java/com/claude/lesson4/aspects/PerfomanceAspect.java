@@ -11,16 +11,17 @@ import java.time.LocalDateTime;
 @Aspect
 @Component
 public class PerfomanceAspect {
-    @Pointcut("within(com.claude.lesson4.annotations.Timed)")
+    @Pointcut("@annotation(com.claude.lesson4.annotations.Timed)")
     public void pointcut() {
 
     }
 
     @Around("pointcut()")
-    public Object around(ProceedingJoinPoint proceedingJoinPoint, Object result) {
+    public Object around(ProceedingJoinPoint proceedingJoinPoint) {
         long startTime = System.currentTimeMillis();
+        Object result;
         try {
-            proceedingJoinPoint.proceed();
+            result = proceedingJoinPoint.proceed();
         } catch (Throwable e) {
             throw new RuntimeException("Something went wrong with proceeding method "
                     + proceedingJoinPoint.getSignature().getName()

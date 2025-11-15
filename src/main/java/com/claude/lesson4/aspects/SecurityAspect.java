@@ -6,21 +6,28 @@ import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.stereotype.Component;
 
 import java.lang.annotation.Annotation;
+
 
 @Aspect
 @Component
 public class SecurityAspect {
     private UserRole userRole = UserRole.USER;
 
-    @Pointcut("within(com.claude.lesson4.annotations.Secured)")
+    public void setUserRole(UserRole userRole) {
+        this.userRole = userRole;
+    }
+
+    @Pointcut("@annotation(com.claude.lesson4.annotations.Secured)")
     public void pointcut() {}
 
     @Before("pointcut()")
     public void before(JoinPoint joinPoint) {
-        Secured annotation = joinPoint.getSignature().getClass().getAnnotation(Secured.class);
+        MethodSignature signature = (MethodSignature) joinPoint.getSignature();
+        Secured annotation = signature.getMethod().getAnnotation(Secured.class);
         UserRole role = annotation.role();
         System.out.println("[SECURITY] Checking access for method: "
                 + joinPoint.getSignature().getName());

@@ -16,7 +16,7 @@ import java.util.List;
 public class AuditAspect {
     private List<String> auditLog = new ArrayList<>();
 
-    @Pointcut("within(Auditable)")
+    @Pointcut("@annotation(com.claude.lesson4.annotations.Auditable)")
     public void pointcut() {};
 
     @AfterReturning("pointcut()")

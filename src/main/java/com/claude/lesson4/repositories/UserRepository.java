@@ -15,7 +15,7 @@ public class UserRepository {
     Long id = 0L;
 
     public UserRepository() {
-        System.out.println("[IoC] Bean TaskRepository created");
+        System.out.println("[IoC] Bean UserRepository created");
         initializeUsers();
     }
 

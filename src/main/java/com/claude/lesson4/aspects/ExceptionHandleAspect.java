@@ -11,7 +11,7 @@ import java.util.Arrays;
 @Aspect
 @Component
 public class ExceptionHandleAspect {
-    @Pointcut("execute(* com.claude.lesson4.services.*.*(..))")
+    @Pointcut("execution(* com.claude.lesson4.services.*.*(..))")
     public void pointcut() {}
 
     @AfterThrowing(
