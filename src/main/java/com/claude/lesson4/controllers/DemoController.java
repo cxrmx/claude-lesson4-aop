@@ -74,6 +74,7 @@ public class DemoController {
 
     public void demo6() {
         printSection("Audit");
+        securityAspect.setUserRole(UserRole.MANAGER);
         taskService.createTask("Buy scissors", "Buy scissors in grocery", 1L);
         taskService.updateTaskStatus(2L, TaskStatus.IN_PROGRESS);
         taskService.assignTask(2L, 1L);
