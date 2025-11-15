@@ -59,7 +59,7 @@ public class DemoController {
         try {
             taskService.deleteTask(1L);
         } catch (SecurityException e) {
-            System.out.println("Caught SecurityException as expected: " + e.getMessage());;
+            System.out.println("Caught SecurityException as expected: " + e.getMessage());
         }
     }
 
